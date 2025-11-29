@@ -38,23 +38,23 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
-    
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
-      setFormData({ 
-        name: "", 
-        company: "", 
-        email: "", 
-        phone: "", 
-        interest: "", 
-        students: "", 
-        message: "" 
+      setFormData({
+        name: "",
+        company: "",
+        email: "",
+        phone: "",
+        interest: "",
+        students: "",
+        message: ""
       });
     }, 2000);
   };
@@ -73,7 +73,7 @@ const Contact = () => {
               Enrollment Consultation Requested!
             </h2>
             <p className="text-gray-600 mb-8 text-lg animate-fade-in-up delay-200">
-              Thank you for contacting Global Online Education. Our academic advisors will review your requirements 
+              Thank you for contacting Global Online Education. Our academic advisors will review your requirements
               and get back to you within 24 hours with personalized learning recommendations.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-400">
@@ -125,24 +125,22 @@ const Contact = () => {
             }}
           />
         ))}
-        
+
         {/* Animated Gradients */}
         <div className="absolute top-1/4 -left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse-slow"></div>
-        <div className="absolute top-1/2 -right-10 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse-slow" style={{animationDelay: '2s'}}></div>
-        <div className="absolute bottom-1/4 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse-slow" style={{animationDelay: '4s'}}></div>
+        <div className="absolute top-1/2 -right-10 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-1/4 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse-slow" style={{ animationDelay: '4s' }}></div>
       </div>
 
       <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative z-10">
         {/* Header Section */}
         <section className="text-center mb-16">
-          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent mb-4 transition-all duration-1000 ${
-            isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'
-          }`}>
+          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 bg-clip-text text-transparent mb-4 transition-all duration-1000 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'
+            }`}>
             Start Your Learning Journey
           </h1>
-          <p className={`text-xl text-gray-600 max-w-2xl mx-auto transition-all duration-1000 delay-300 ${
-            isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'
-          }`}>
+          <p className={`text-xl text-gray-600 max-w-2xl mx-auto transition-all duration-1000 delay-300 ${isVisible ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'
+            }`}>
             Ready to transform your future through quality education? Let's discuss your goals and create the perfect learning path together.
           </p>
         </section>
@@ -154,7 +152,7 @@ const Contact = () => {
               <h2 className="text-2xl font-bold text-gray-900 mb-6 bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
                 Academic Support
               </h2>
-              
+
               <div className="space-y-6">
                 {[
                   {
@@ -163,11 +161,13 @@ const Contact = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                     ),
-                    bg: "bg-gradient-to-r from-purple-100 to-violet-100",
-                    title: "Admissions & Enrollment",
-                    content: "admissions@globaledu.com",
+
+                    bg: "bg-purple-100",
+                    title: "Admissions",
+                    content: "adc@global.com",
                     link: "mailto:admissions@globaledu.com",
-                    color: "text-purple-600 hover:text-purple-700"
+                    color: "text-purple-600",
+                    className: "text-xs"
                   },
                   {
                     icon: (
@@ -207,7 +207,7 @@ const Contact = () => {
                     color: "text-gray-600"
                   }
                 ].map((item, index) => (
-                  <div 
+                  <div
                     key={index}
                     className="flex items-start gap-4 p-4 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up bg-white/50 backdrop-blur-sm border border-white/50"
                     style={{ animationDelay: `${index * 100 + 400}ms` }}
@@ -238,7 +238,7 @@ const Contact = () => {
                   <h3 className="font-bold">Quick Enrollment?</h3>
                 </div>
                 <p className="text-sm opacity-90">
-                  Ready to start learning immediately? 
+                  Ready to start learning immediately?
                   <a href="tel:+155512353276" className="font-bold ml-1 hover:underline">
                     Call now for instant enrollment!
                   </a>
@@ -254,7 +254,7 @@ const Contact = () => {
                 <span>🎓</span>
                 Request Learning Consultation
               </h2>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {[
@@ -365,9 +365,8 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 text-white py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center justify-center animate-fade-in-up shadow-md ${
-                    isSubmitting ? 'animate-pulse' : ''
-                  }`}
+                  className={`w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 text-white py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center justify-center animate-fade-in-up shadow-md ${isSubmitting ? 'animate-pulse' : ''
+                    }`}
                   style={{ animationDelay: '1200ms' }}
                 >
                   {isSubmitting ? (
@@ -382,7 +381,7 @@ const Contact = () => {
                     "Get Free Learning Consultation 📚"
                   )}
                 </button>
-                
+
                 <p className="text-sm text-white/80 text-center animate-fade-in-up" style={{ animationDelay: '1400ms' }}>
                   * Required fields. We'll provide personalized learning recommendations within 24 hours.
                 </p>
@@ -425,8 +424,8 @@ const Contact = () => {
                   answer: "We provide various payment plans, scholarships, corporate discounts, and financial aid options to make education accessible."
                 }
               ].map((faq, index) => (
-                <div 
-                  key={index} 
+                <div
+                  key={index}
                   className="bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl p-6 transform hover:scale-105 transition-all duration-300 animate-fade-in-up group hover:bg-white/30"
                   style={{ animationDelay: `${1800 + index * 100}ms` }}
                 >
@@ -556,6 +555,6 @@ const Contact = () => {
       `}</style>
     </div>
   );
-}; 
+};
 
 export default Contact;
