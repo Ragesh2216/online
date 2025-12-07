@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>online education</title>
 
-    <!-- FIX: Automatically redirect to #/ on GitHub Pages -->
+    <!-- GitHub Pages HashRouter Fix -->
     <script>
       (function () {
-        const path = window.location.pathname;
-        if (path.endsWith("/online/")) {
-          window.location.replace(path + "#/");
+        if (!window.location.hash) {
+          window.location.replace(
+            window.location.origin +
+              window.location.pathname +
+              "#/"
+          );
         }
       })();
     </script>
@@ -19,9 +22,7 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     />
     <link
       rel="stylesheet"
@@ -30,6 +31,7 @@
     <script type="module" crossorigin src="/online/assets/index-CyMLz2gC.js"></script>
     <link rel="stylesheet" crossorigin href="/online/assets/index-CkncT4eL.css">
   </head>
+
   <body>
     <div id="root"></div>
   </body>
