@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../images/logo.png";
+import { Link } from "react-router-dom"; // Import Link
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -25,20 +25,35 @@ const Footer = () => {
             Your trusted partner for world-class online education. We deliver cutting-edge learning experiences, industry-relevant curriculum, and personalized career pathways to help you achieve your educational goals.
           </p>
 
+          {/* Social Icons linking to 404 */}
           <div className="flex justify-center md:justify-start space-x-4">
             {[
-              { icon: <FacebookIcon className="hover:text-purple-400 transition-colors duration-200" />, url: "/404" },
-              { icon: <LinkedInIcon className="hover:text-blue-400 transition-colors duration-200" />, url: "/404" },
-              { icon: <GitHubIcon className="hover:text-gray-300 transition-colors duration-200" />, url: "/404" },
-              { icon: <InstagramIcon className="hover:text-pink-400 transition-colors duration-200" />, url: "/404" }
+              { 
+                icon: <FacebookIcon className="hover:text-purple-400 transition-colors duration-200" />, 
+                label: "Facebook"
+              },
+              { 
+                icon: <LinkedInIcon className="hover:text-blue-400 transition-colors duration-200" />, 
+                label: "LinkedIn"
+              },
+              { 
+                icon: <GitHubIcon className="hover:text-gray-300 transition-colors duration-200" />, 
+                label: "GitHub"
+              },
+              { 
+                icon: <InstagramIcon className="hover:text-pink-400 transition-colors duration-200" />, 
+                label: "Instagram"
+              }
             ].map((social, index) => (
-              <a
+              <Link
                 key={index}
-                href={social.url}
+                to="/404"
                 className="w-10 h-10 bg-purple-800/50 rounded-lg flex items-center justify-center hover:bg-purple-700/50 transition-colors duration-200 backdrop-blur-sm"
+                aria-label={social.label}
+                title={social.label}
               >
                 {social.icon}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -48,19 +63,18 @@ const Footer = () => {
           <h5 className="text-white text-lg font-semibold mb-6">Learning Programs</h5>
           <ul className="space-y-3">
             {[
-              { label: "Online Degree Programs", url: "/degrees" },
-            
-              { label: "Live Instructor Sessions", url: "/live-sessions" },
-              { label: "Corporate Training", url: "/corporate" },
-              { label: "Skill Development", url: "/skills" }
+              { label: "Online Degree Programs", url: "/404" },
+              { label: "Live Instructor Sessions", url: "/404" },
+              { label: "Corporate Training", url: "/404" },
+              { label: "Skill Development", url: "/404" }
             ].map((program, index) => (
               <li key={index}>
-                <a 
-                  href={program.url} 
+                <Link 
+                  to={program.url} 
                   className="text-gray-400 hover:text-purple-400 transition-colors duration-200 text-sm font-normal block py-1"
                 >
                   {program.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -75,16 +89,15 @@ const Footer = () => {
               { label: "About Us", url: "/about" },
               { label: "Services", url: "/services" },
               { label: "Contact Us", url: "/contact" },
-              { label: "Login", url: "/login" },
-             
+              { label: "Login", url: "/login" }
             ].map((link, index) => (
               <li key={index}>
-                <a 
-                  href={link.url} 
+                <Link 
+                  to={link.url} 
                   className="text-gray-400 hover:text-purple-400 transition-colors duration-200 text-sm font-normal block py-1"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -105,33 +118,28 @@ const Footer = () => {
             </div>
             
             <div className="flex justify-center md:justify-start">
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=MMR+COMPLEX,+Salem,+Tamil+Nadu+636008"
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                to="/404"
                 className="text-purple-400 hover:text-purple-300 underline text-sm"
               >
                 View on Google Maps
-              </a>
+              </Link>
             </div>
             
             <div className="flex justify-center md:justify-start items-center space-x-3">
               <PhoneIcon className="w-5 h-5 text-purple-400 flex-shrink-0" />
-              <a href="tel:+911234567890" className="text-sm text-gray-400 hover:text-purple-400 transition-colors duration-200">
+              <Link to="/404" className="text-sm text-gray-400 hover:text-purple-400 transition-colors duration-200">
                 +91 12345 67890
-              </a>
+              </Link>
             </div>
             
             <div className="flex justify-center md:justify-start items-center space-x-3">
               <EmailIcon className="w-5 h-5 text-purple-400 flex-shrink-0" />
-              <a href="mailto:info@stacklyedu.com" className="text-sm text-gray-400 hover:text-purple-400 transition-colors duration-200">
+              <Link to="/404" className="text-sm text-gray-400 hover:text-purple-400 transition-colors duration-200">
                 info@stacklyedu.com
-              </a>
+              </Link>
             </div>
           </div>
-
-          {/* Newsletter Signup */}
-          
         </div>
       </div>
 
@@ -154,13 +162,13 @@ const Footer = () => {
               { label: "Sitemap", url: "/404" },
               { label: "Careers", url: "/404" }
             ].map((link, index) => (
-              <a
+              <Link
                 key={index}
-                href={link.url}
+                to={link.url}
                 className="text-gray-400 hover:text-purple-400 transition-colors duration-200"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
