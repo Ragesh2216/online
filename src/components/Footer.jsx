@@ -1,202 +1,296 @@
-import React from "react";
-import { Link } from "react-router-dom"; // Import Link
-import FacebookIcon from "@mui/icons-material/Facebook";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import EmailIcon from "@mui/icons-material/Email";
-import PhoneIcon from "@mui/icons-material/Phone";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { 
+  FaFacebookF, 
+  FaLinkedinIn, 
+  FaGithub, 
+  FaInstagram,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+  FaChevronUp,
+  FaExternalLinkAlt,
+  FaGraduationCap,
+  FaChalkboardTeacher,
+  FaBuilding,
+  FaTools,
+  FaShieldAlt,
+  FaFileContract,
+  FaSitemap,
+  FaBriefcase
+} from "react-icons/fa";
+import { MdEmail, MdPhone } from "react-icons/md";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  // Scroll to top functionality
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
+  // Show back to top button on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 500) {
+        setShowBackToTop(true);
+      } else {
+        setShowBackToTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <footer className="bg-gradient-to-br from-purple-900 via-indigo-900 to-pink-900 text-gray-300 py-12">
-      {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 pb-8 border-b border-purple-700">
-        
-        {/* Company Info */}
-        <div className="lg:col-span-1 text-center md:text-left">
-          <div className="flex justify-center md:justify-start">
-            <h1 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent mb-4">Stackly</h1>
-          </div>
-          <p className="text-sm text-gray-400 leading-relaxed mb-4">
-            Your trusted partner for world-class online education. We deliver cutting-edge learning experiences, industry-relevant curriculum, and personalized career pathways to help you achieve your educational goals.
-          </p>
+    <>
+      <footer className="bg-gradient-to-b from-gray-50 to-gray-100 text-gray-700 py-16 border-t border-gray-200">
+        {/* Back to Top Button */}
+        <button
+          onClick={scrollToTop}
+          className={`fixed right-8 bottom-8 w-14 h-14 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl transition-all duration-300 z-50 ${
+            showBackToTop 
+              ? "opacity-100 translate-y-0" 
+              : "opacity-0 translate-y-10 pointer-events-none"
+          }`}
+          aria-label="Back to top"
+        >
+          <FaChevronUp className="w-6 h-6" />
+        </button>
 
-          {/* Social Icons linking to 404 */}
-          <div className="flex justify-center md:justify-start space-x-4">
-            {[
-              { 
-                icon: <FacebookIcon className="hover:text-purple-400 transition-colors duration-200" />, 
-                label: "Facebook"
-              },
-              { 
-                icon: <LinkedInIcon className="hover:text-blue-400 transition-colors duration-200" />, 
-                label: "LinkedIn"
-              },
-              { 
-                icon: <GitHubIcon className="hover:text-gray-300 transition-colors duration-200" />, 
-                label: "GitHub"
-              },
-              { 
-                icon: <InstagramIcon className="hover:text-pink-400 transition-colors duration-200" />, 
-                label: "Instagram"
-              }
-            ].map((social, index) => (
-              <Link
-                key={index}
-                to="/404"
-                className="w-10 h-10 bg-purple-800/50 rounded-lg flex items-center justify-center hover:bg-purple-700/50 transition-colors duration-200 backdrop-blur-sm"
-                aria-label={social.label}
-                title={social.label}
-              >
-                {social.icon}
-              </Link>
-            ))}
-          </div>
-        </div>
+        {/* Main Footer Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-12">
+            
+            {/* Company Info */}
+            <div className="lg:col-span-1 text-center md:text-left">
+              <div className="flex justify-center md:justify-start items-center gap-3 mb-6">
+                <div className="p-3 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl shadow-md">
+                  <FaGraduationCap className="w-8 h-8 text-white" />
+                </div>
+                <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
+                  Stackly
+                </h1>
+              </div>
+              
+              <p className="text-gray-600 leading-relaxed mb-6 text-sm">
+                Your trusted partner for world-class online education. We deliver cutting-edge learning experiences, industry-relevant curriculum, and personalized career pathways.
+              </p>
 
-        {/* Learning Programs */}
-        <div className="lg:col-span-1 text-center md:text-left">
-          <h5 className="text-white text-lg font-semibold mb-6">Learning Programs</h5>
-          <ul className="space-y-3">
-            {[
-              { label: "Online Degree Programs", url: "/404" },
-              { label: "Live Instructor Sessions", url: "/404" },
-              { label: "Corporate Training", url: "/404" },
-              { label: "Skill Development", url: "/404" }
-            ].map((program, index) => (
-              <li key={index}>
-                <Link 
-                  to={program.url} 
-                  className="text-gray-400 hover:text-purple-400 transition-colors duration-200 text-sm font-normal block py-1"
-                >
-                  {program.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-        
-        {/* Quick Links */}
-        <div className="lg:col-span-1 text-center md:text-left">
-          <h5 className="text-white text-lg font-semibold mb-6">Quick Links</h5>
-          <ul className="space-y-3">
-            {[
-              { label: "Home", url: "/" },
-              { label: "About Us", url: "/about" },
-              { label: "Services", url: "/services" },
-              { label: "Contact Us", url: "/contact" },
-              { label: "Login", url: "/login" }
-            ].map((link, index) => (
-              <li key={index}>
-                <Link 
-                  to={link.url} 
-                  className="text-gray-400 hover:text-purple-400 transition-colors duration-200 text-sm font-normal block py-1"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Contact Info */}
-        <div className="lg:col-span-1 text-center md:text-left">
-          <h5 className="text-white text-lg font-semibold mb-6">Get In Touch</h5>
-          <div className="space-y-4">
-            <div className="flex flex-col items-center md:items-start md:flex-row md:space-x-3">
-              <LocationOnIcon className="w-5 h-5 text-purple-400 mt-0.5 flex-shrink-0 mb-2 md:mb-0" />
-              <div className="text-center md:text-left">
-                <p className="text-sm text-gray-300 font-medium">Education Hub</p>
-                <p className="text-sm text-gray-400">MMR Complex</p>
-                <p className="text-sm text-gray-400">Salem, Tamil Nadu</p>
-                <p className="text-sm text-gray-400">India - 636008</p>
+              {/* Social Icons */}
+              <div className="flex justify-center md:justify-start gap-3">
+                {[
+                  { 
+                    icon: <FaFacebookF className="w-5 h-5" />, 
+                    label: "Facebook",
+                    color: "hover:bg-blue-600 hover:text-white"
+                  },
+                  { 
+                    icon: <FaLinkedinIn className="w-5 h-5" />, 
+                    label: "LinkedIn",
+                    color: "hover:bg-blue-700 hover:text-white"
+                  },
+                  { 
+                    icon: <FaGithub className="w-5 h-5" />, 
+                    label: "GitHub",
+                    color: "hover:bg-gray-800 hover:text-white"
+                  },
+                  { 
+                    icon: <FaInstagram className="w-5 h-5" />, 
+                    label: "Instagram",
+                    color: "hover:bg-pink-600 hover:text-white"
+                  }
+                ].map((social, index) => (
+                  <Link
+                    key={index}
+                    to="/404"
+                    className={`w-12 h-12 bg-white border border-gray-200 rounded-xl flex items-center justify-center text-gray-600 hover:scale-110 transition-all duration-300 shadow-sm hover:shadow-md ${social.color}`}
+                    aria-label={social.label}
+                    title={social.label}
+                  >
+                    {social.icon}
+                  </Link>
+                ))}
               </div>
             </div>
-            
-            <div className="flex justify-center md:justify-start">
-              <Link
-                to="/404"
-                className="text-purple-400 hover:text-purple-300 underline text-sm"
-              >
-                View on Google Maps
-              </Link>
+
+            {/* Learning Programs */}
+            <div className="lg:col-span-1 text-center md:text-left">
+              <div className="flex items-center gap-2 mb-6 justify-center md:justify-start">
+                <FaChalkboardTeacher className="w-6 h-6 text-purple-600" />
+                <h5 className="text-gray-800 text-lg font-semibold">Learning Programs</h5>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  { label: "Online Degree Programs", url: "/404" },
+                  { label: "Live Instructor Sessions", url: "/404" },
+                  { label: "Corporate Training", url: "/404" },
+                  { label: "Skill Development", url: "/404" }
+                ].map((program, index) => (
+                  <li key={index}>
+                    <Link 
+                      to={program.url} 
+                      className="group flex items-center gap-2 text-gray-600 hover:text-purple-600 transition-all duration-300 text-sm font-medium py-2.5 px-4 rounded-lg hover:bg-white hover:shadow-sm"
+                    >
+                      <FaExternalLinkAlt className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <span>{program.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
             
-            <div className="flex justify-center md:justify-start items-center space-x-3">
-              <PhoneIcon className="w-5 h-5 text-purple-400 flex-shrink-0" />
-              <Link to="/404" className="text-sm text-gray-400 hover:text-purple-400 transition-colors duration-200">
-                +91 12345 67890
-              </Link>
+            {/* Quick Links */}
+            <div className="lg:col-span-1 text-center md:text-left">
+              <div className="flex items-center gap-2 mb-6 justify-center md:justify-start">
+                <FaSitemap className="w-6 h-6 text-purple-600" />
+                <h5 className="text-gray-800 text-lg font-semibold">Quick Links</h5>
+              </div>
+              <ul className="space-y-3">
+                {[
+                  { label: "Home", url: "/", icon: <FaExternalLinkAlt className="w-3 h-3" /> },
+                  { label: "About Us", url: "/about", icon: <FaBuilding className="w-3 h-3" /> },
+                  { label: "Services", url: "/services", icon: <FaTools className="w-3 h-3" /> },
+                  { label: "Contact Us", url: "/contact", icon: <FaEnvelope className="w-3 h-3" /> },
+                  { label: "Login", url: "/login", icon: <FaGraduationCap className="w-3 h-3" /> }
+                ].map((link, index) => (
+                  <li key={index}>
+                    <Link 
+                      to={link.url} 
+                      className="group flex items-center gap-2 text-gray-600 hover:text-purple-600 transition-all duration-300 text-sm font-medium py-2.5 px-4 rounded-lg hover:bg-white hover:shadow-sm"
+                    >
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {link.icon}
+                      </span>
+                      <span>{link.label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-            
-            <div className="flex justify-center md:justify-start items-center space-x-3">
-              <EmailIcon className="w-5 h-5 text-purple-400 flex-shrink-0" />
-              <Link to="/404" className="text-sm text-gray-400 hover:text-purple-400 transition-colors duration-200">
-                info@stacklyedu.com
-              </Link>
+
+            {/* Contact Info */}
+            <div className="lg:col-span-1 text-center md:text-left">
+              <div className="flex items-center gap-2 mb-6 justify-center md:justify-start">
+                <FaEnvelope className="w-6 h-6 text-purple-600" />
+                <h5 className="text-gray-800 text-lg font-semibold">Get In Touch</h5>
+              </div>
+              
+              <div className="space-y-5">
+                <div className="flex flex-col items-center md:items-start">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                      <FaMapMarkerAlt className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-sm text-gray-800 font-medium">Education Hub</p>
+                      <p className="text-sm text-gray-600">MMR Complex, Salem</p>
+                      <p className="text-sm text-gray-600">Tamil Nadu, India - 636008</p>
+                    </div>
+                  </div>
+                  
+                  <Link
+                    to="/404"
+                    className="group inline-flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700 font-medium mt-2"
+                  >
+                    <span>View on Google Maps</span>
+                    <FaExternalLinkAlt className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
+                  </Link>
+                </div>
+                
+                <div className="flex flex-col gap-3">
+                  <Link 
+                    to="/404" 
+                    className="group flex items-center gap-3 text-gray-600 hover:text-purple-600 transition-colors duration-300 justify-center md:justify-start"
+                  >
+                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors duration-300">
+                      <MdPhone className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <span className="font-medium">+91 12345 67890</span>
+                  </Link>
+                  
+                  <Link 
+                    to="/404" 
+                    className="group flex items-center gap-3 text-gray-600 hover:text-purple-600 transition-colors duration-300 justify-center md:justify-start"
+                  >
+                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors duration-300">
+                      <MdEmail className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <span className="font-medium">info@stacklyedu.com</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-gray-300 pt-12">
+            {/* Stats Section */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+              {[
+                { number: "50K+", label: "Active Students", icon: <FaGraduationCap className="w-6 h-6" /> },
+                { number: "95%", label: "Success Rate", icon: <FaChalkboardTeacher className="w-6 h-6" /> },
+                { number: "500+", label: "Courses", icon: <FaTools className="w-6 h-6" /> },
+                { number: "150+", label: "Countries", icon: <FaMapMarkerAlt className="w-6 h-6" /> }
+              ].map((stat, index) => (
+                <div 
+                  key={index}
+                  className="text-center p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100"
+                >
+                  <div className="flex justify-center mb-3">
+                    <div className="p-3 bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg">
+                      <div className="text-purple-600">{stat.icon}</div>
+                    </div>
+                  </div>
+                  <div className="text-2xl font-bold text-gray-800 mb-1">{stat.number}</div>
+                  <div className="text-sm text-gray-600">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom Footer */}
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+              {/* Copyright */}
+              <div className="text-center md:text-left">
+                <p className="text-gray-600">
+                  &copy; {currentYear} <span className="font-semibold text-gray-800">Stackly Education</span>. All rights reserved.
+                </p>
+                <p className="text-xs text-gray-500 mt-2">
+                  Transforming lives through quality online learning
+                </p>
+              </div>
+
+              {/* Legal Links */}
+              <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+                {[
+                  { label: "Privacy Policy", url: "/404", icon: <FaShieldAlt className="w-4 h-4" /> },
+                  { label: "Terms of Service", url: "/404", icon: <FaFileContract className="w-4 h-4" /> },
+                  { label: "Academic Policy", url: "/404", icon: <FaGraduationCap className="w-4 h-4" /> },
+                  { label: "Sitemap", url: "/404", icon: <FaSitemap className="w-4 h-4" /> },
+                  { label: "Careers", url: "/404", icon: <FaBriefcase className="w-4 h-4" /> }
+                ].map((link, index) => (
+                  <Link
+                    key={index}
+                    to={link.url}
+                    className="group flex items-center gap-2 text-gray-600 hover:text-purple-600 hover:bg-white px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium"
+                  >
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      {link.icon}
+                    </span>
+                    <span>{link.label}</span>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Bottom Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          {/* Copyright */}
-          <div className="text-center md:text-left">
-            <p className="text-sm text-gray-400">
-              &copy; {currentYear} Stackly Education. All rights reserved.
-            </p>
-          </div>
-
-          {/* Legal Links */}
-          <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
-            {[
-              { label: "Privacy Policy", url: "/404" },
-              { label: "Terms of Service", url: "/404" },
-              { label: "Academic Policy", url: "/404" },
-              { label: "Sitemap", url: "/404" },
-              { label: "Careers", url: "/404" }
-            ].map((link, index) => (
-              <Link
-                key={index}
-                to={link.url}
-                className="text-gray-400 hover:text-purple-400 transition-colors duration-200"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {/* Additional Info */}
-        <div className="mt-6 pt-6 border-t border-purple-800 text-center">
-          <p className="text-xs text-gray-500">
-            Stackly Education - Transforming lives through quality online learning. 
-            Accredited Programs • Industry Expert Instructors • 95% Completion Rate • Global Learning Community
-          </p>
-        </div>
-
-        {/* Student Success Stats */}
-        <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          {[
-            { number: "50K+", label: "Students" },
-            { number: "95%", label: "Success Rate" },
-            { number: "500+", label: "Courses" },
-            { number: "150+", label: "Countries" }
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
-              <div className="text-lg font-bold text-purple-400">{stat.number}</div>
-              <div className="text-xs text-gray-400">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 };
 
