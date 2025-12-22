@@ -13,7 +13,8 @@ import {
   FaChevronDown,
   FaBars,
   FaTimes,
-  FaChevronUp
+  FaChevronUp,  // Added comma here
+  FaGraduationCap
 } from "react-icons/fa";
 
 const Navbar = () => {
@@ -69,7 +70,8 @@ const Navbar = () => {
     services: <FaConciergeBell className="text-gray-600 group-hover:text-purple-600" />,
     contact: <FaEnvelope className="text-gray-600 group-hover:text-purple-600" />,
     login: <FaSignInAlt className="text-gray-600 group-hover:text-purple-600" />,
-    pricing: <FaDollarSign className="text-gray-600 group-hover:text-purple-600" />
+    pricing: <FaDollarSign className="text-gray-600 group-hover:text-purple-600" />,
+    course: <FaGraduationCap className="text-gray-600 group-hover:text-purple-600" />,
   };
 
   return (
@@ -254,18 +256,18 @@ const Navbar = () => {
           ) : (
             // Show only the Pricing link when on homepage2
             <>
-            <NavItem 
-              to="/latest" 
-              icon={iconMap.pricing}
-              text="Pricing"
-              onClick={closeMenu}
-            />
-             <NavItem 
-              to="/course" 
-              icon={iconMap.pricing}
-              text="Course"
-              onClick={closeMenu}
-            />
+              <NavItem 
+                to="/latest" 
+                icon={iconMap.pricing}
+                text="Pricing"
+                onClick={closeMenu}
+              />
+              <NavItem 
+                to="/course" 
+                icon={iconMap.course}
+                text="Course"
+                onClick={closeMenu}
+              />
             </>
           )}
         </ul>

@@ -412,17 +412,7 @@ const WarehouseManagement = () => {
           </motion.div>
         </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="text-gray-400 text-sm">Scroll to explore</div>
-          <div className="w-6 h-10 border-2 border-cyan-400/50 rounded-full flex justify-center mt-2">
-            <div className="w-1 h-3 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full mt-2" />
-          </div>
-        </motion.div>
+      
       </section>
 
       {/* Features Section - Enhanced with Smooth Animations */}

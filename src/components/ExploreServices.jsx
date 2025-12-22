@@ -323,19 +323,7 @@ const ExploreServices = () => {
           </motion.div>
         </div>
 
-        {/* Animated Scroll Indicator */}
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-3 min-[320px]:bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2"
-        >
-          <div className="flex flex-col items-center gap-1">
-            <span className="text-white/60 text-xs">Scroll</span>
-            <div className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-cyan-400/50 rounded-full flex justify-center">
-              <div className="w-1.5 h-2 bg-gradient-to-b from-cyan-400 to-purple-400 rounded-full mt-2"></div>
-            </div>
-          </div>
-        </motion.div>
+       
       </section>
 
       {/* Enhanced Innovation Slides Section */}
