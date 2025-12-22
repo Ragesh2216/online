@@ -10,7 +10,7 @@ import Dashboard from "./pages/Dashboard.jsx";
 import Contact from "./pages/Contact.jsx";
 import About from "./pages/About.jsx";
 import Service from "./pages/Service.jsx";
-import Subscription from "./pages/Subscription.jsx";
+import Blog from "./pages/Blog.jsx";
 import ArchiveDop from "./components/ArchiveDop.jsx";
 import Login from "./pages/Login.jsx";
 import Latest from "./pages/Latest.jsx";
@@ -19,6 +19,7 @@ import ExploreServices from "./components/ExploreServices.jsx";
 import InventoryOptimization from "./components/InventoryOptimization.jsx";
 import SupplierNetwork from "./components/SupplierNetwork.jsx";
 import WarehouseManagement from "./components/WarehouseManagement.jsx";
+import Course from "./components/Course.jsx";
 
 const Root = () => {
   return (
@@ -33,13 +34,14 @@ const Root = () => {
         <Route path="/inst" element={<App element={<InventoryOptimization />} />} />
         <Route path="/dashboards" element={<App element={<Dashboard />} />} />
         <Route path="/latest" element={<App element={<Latest />} />} />
-        <Route path="/subscription" element={<App element={<Subscription />} />} />
+        <Route path="/blog" element={<App element={<Blog />} />} />
         <Route path="/about" element={<App element={<About />} />} />
         <Route path="/services" element={<App element={<Service />} />} />
         <Route path="/contact" element={<App element={<Contact />} />} />
         <Route path="/login" element={<App element={<Login />} />} />
         <Route path="/explore-services" element={<App element={<ExploreServices />} />} />
         <Route path="*" element={<App element={<NotFound />} />} />
+        <Route path="/course" element={<App element={<Course />} />} />
       </Routes>
     </HashRouter>
   );

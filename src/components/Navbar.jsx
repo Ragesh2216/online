@@ -213,9 +213,9 @@ const Navbar = () => {
               />
               
               <NavItem 
-                to="/subscription" 
+                to="/blog" 
                 icon={iconMap.subscription}
-                text="Subscription"
+                text="Blog"
                 onClick={closeMenu}
               />
               
@@ -253,12 +253,20 @@ const Navbar = () => {
             </>
           ) : (
             // Show only the Pricing link when on homepage2
+            <>
             <NavItem 
               to="/latest" 
               icon={iconMap.pricing}
               text="Pricing"
               onClick={closeMenu}
             />
+             <NavItem 
+              to="/course" 
+              icon={iconMap.pricing}
+              text="Course"
+              onClick={closeMenu}
+            />
+            </>
           )}
         </ul>
       </nav>
