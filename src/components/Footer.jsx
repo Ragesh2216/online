@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { 
   FaFacebookF, 
   FaLinkedinIn, 
@@ -17,13 +17,25 @@ import {
   FaShieldAlt,
   FaFileContract,
   FaSitemap,
-  FaBriefcase
+  FaBriefcase,
+  FaDollarSign,
+  FaLaptopCode,
+  FaChartLine,
+  FaMobileAlt,
+  FaCloud,
+  FaDatabase,
+  FaRobot,
+  FaNetworkWired
 } from "react-icons/fa";
 import { MdEmail, MdPhone } from "react-icons/md";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const location = useLocation();
+
+  // Check if we're on homepage2 OR pricing OR course routes
+  const isHomePage2Group = ['/homepage2', '/latest', '/course'].includes(location.pathname);
 
   // Scroll to top functionality
   const scrollToTop = () => {
@@ -46,6 +58,68 @@ const Footer = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Homepage2 Group Services
+  const homepage2Services = [
+    { label: "Cloud Solutions", url: "/404", icon: <FaCloud className="w-3 h-3" /> },
+    { label: "Cybersecurity", url: "/404", icon: <FaShieldAlt className="w-3 h-3" /> },
+    { label: "AI & ML Solutions", url: "/404", icon: <FaRobot className="w-3 h-3" /> },
+    { label: "Data Analytics", url: "/404", icon: <FaDatabase className="w-3 h-3" /> },
+    { label: "DevOps Services", url: "/404", icon: <FaTools className="w-3 h-3" /> },
+    { label: "IoT Solutions", url: "/404", icon: <FaNetworkWired className="w-3 h-3" /> }
+  ];
+
+  // Homepage2 Group Quick Links
+  const homepage2QuickLinks = [
+    { label: "Home2", url: "/homepage2", icon: <FaExternalLinkAlt className="w-3 h-3" /> },
+    { label: "Pricing", url: "/latest", icon: <FaDollarSign className="w-3 h-3" /> },
+    { label: "Course", url: "/course", icon: <FaGraduationCap className="w-3 h-3" /> },
+    { label: "Case Studies", url: "/404", icon: <FaChartLine className="w-3 h-3" /> },
+    { label: "Contact Us", url: "/contact", icon: <FaEnvelope className="w-3 h-3" /> }
+  ];
+
+  // Homepage2 Group Technologies
+  const homepage2Technologies = [
+    { label: "Web Development", url: "/404", icon: <FaLaptopCode className="w-3 h-3" /> },
+    { label: "Mobile Apps", url: "/404", icon: <FaMobileAlt className="w-3 h-3" /> },
+    { label: "Cloud Infrastructure", url: "/404", icon: <FaCloud className="w-3 h-3" /> },
+    { label: "Data Science", url: "/404", icon: <FaDatabase className="w-3 h-3" /> },
+    { label: "AI Integration", url: "/404", icon: <FaRobot className="w-3 h-3" /> },
+    { label: "DevOps", url: "/404", icon: <FaTools className="w-3 h-3" /> }
+  ];
+
+  // Original Learning Programs (for non-homepage2 pages)
+  const originalLearningPrograms = [
+    { label: "Online Degree Programs", url: "/404" },
+    { label: "Live Instructor Sessions", url: "/404" },
+    { label: "Corporate Training", url: "/404" },
+    { label: "Skill Development", url: "/404" }
+  ];
+
+  // Original Quick Links (for non-homepage2 pages)
+  const originalQuickLinks = [
+    { label: "Home", url: "/", icon: <FaExternalLinkAlt className="w-3 h-3" /> },
+    { label: "About Us", url: "/about", icon: <FaBuilding className="w-3 h-3" /> },
+    { label: "Services", url: "/services", icon: <FaTools className="w-3 h-3" /> },
+    { label: "Contact Us", url: "/contact", icon: <FaEnvelope className="w-3 h-3" /> },
+    { label: "Login", url: "/login", icon: <FaGraduationCap className="w-3 h-3" /> }
+  ];
+
+  // Homepage2 Group Stats
+  const homepage2Stats = [
+    { number: "500+", label: "Clients", icon: <FaBuilding className="w-6 h-6" /> },
+    { number: "99.9%", label: "Uptime", icon: <FaChartLine className="w-6 h-6" /> },
+    { number: "24/7", label: "Support", icon: <FaPhoneAlt className="w-6 h-6" /> },
+    { number: "98%", label: "Satisfaction", icon: <FaGraduationCap className="w-6 h-6" /> }
+  ];
+
+  // Original Stats (for non-homepage2 pages)
+  const originalStats = [
+    { number: "50K+", label: "Active Students", icon: <FaGraduationCap className="w-6 h-6" /> },
+    { number: "95%", label: "Success Rate", icon: <FaChalkboardTeacher className="w-6 h-6" /> },
+    { number: "500+", label: "Courses", icon: <FaTools className="w-6 h-6" /> },
+    { number: "150+", label: "Countries", icon: <FaMapMarkerAlt className="w-6 h-6" /> }
+  ];
 
   return (
     <>
@@ -71,15 +145,22 @@ const Footer = () => {
             <div className="lg:col-span-1 text-center md:text-left">
               <div className="flex justify-center md:justify-start items-center gap-3 mb-6">
                 <div className="p-3 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl shadow-md">
-                  <FaGraduationCap className="w-8 h-8 text-white" />
+                  {isHomePage2Group ? (
+                    <FaLaptopCode className="w-8 h-8 text-white" />
+                  ) : (
+                    <FaGraduationCap className="w-8 h-8 text-white" />
+                  )}
                 </div>
                 <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-purple-600 to-purple-700 bg-clip-text text-transparent">
-                  Stackly
+                  {isHomePage2Group ? "Stackly IT" : "Stackly"}
                 </h1>
               </div>
               
               <p className="text-gray-600 leading-relaxed mb-6 text-sm">
-                Your trusted partner for world-class online education. We deliver cutting-edge learning experiences, industry-relevant curriculum, and personalized career pathways.
+                {isHomePage2Group 
+                  ? "Your trusted partner for cutting-edge IT solutions. We deliver innovative technology services that transform businesses and drive digital growth."
+                  : "Your trusted partner for world-class online education. We deliver cutting-edge learning experiences, industry-relevant curriculum, and personalized career pathways."
+                }
               </p>
 
               {/* Social Icons */}
@@ -119,46 +200,59 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Learning Programs */}
-            <div className="lg:col-span-1 text-center md:text-left">
-              <div className="flex items-center gap-2 mb-6 justify-center md:justify-start">
-                <FaChalkboardTeacher className="w-6 h-6 text-purple-600" />
-                <h5 className="text-gray-800 text-lg font-semibold">Learning Programs</h5>
+            {/* Services Section - Show different content based on page group */}
+            {isHomePage2Group ? (
+              <div className="lg:col-span-1 text-center md:text-left">
+                <div className="flex items-center gap-2 mb-6 justify-center md:justify-start">
+                  <FaTools className="w-6 h-6 text-purple-600" />
+                  <h5 className="text-gray-800 text-lg font-semibold">IT Services</h5>
+                </div>
+                <ul className="space-y-3">
+                  {homepage2Services.map((service, index) => (
+                    <li key={index}>
+                      <Link 
+                        to={service.url} 
+                        className="group flex items-center gap-2 text-gray-600 hover:text-purple-600 transition-all duration-300 text-sm font-medium py-2.5 px-4 rounded-lg hover:bg-white hover:shadow-sm"
+                      >
+                        <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          {service.icon}
+                        </span>
+                        <span>{service.label}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-3">
-                {[
-                  { label: "Online Degree Programs", url: "/404" },
-                  { label: "Live Instructor Sessions", url: "/404" },
-                  { label: "Corporate Training", url: "/404" },
-                  { label: "Skill Development", url: "/404" }
-                ].map((program, index) => (
-                  <li key={index}>
-                    <Link 
-                      to={program.url} 
-                      className="group flex items-center gap-2 text-gray-600 hover:text-purple-600 transition-all duration-300 text-sm font-medium py-2.5 px-4 rounded-lg hover:bg-white hover:shadow-sm"
-                    >
-                      <FaExternalLinkAlt className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <span>{program.label}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            ) : (
+              <div className="lg:col-span-1 text-center md:text-left">
+                <div className="flex items-center gap-2 mb-6 justify-center md:justify-start">
+                  <FaChalkboardTeacher className="w-6 h-6 text-purple-600" />
+                  <h5 className="text-gray-800 text-lg font-semibold">Learning Programs</h5>
+                </div>
+                <ul className="space-y-3">
+                  {originalLearningPrograms.map((program, index) => (
+                    <li key={index}>
+                      <Link 
+                        to={program.url} 
+                        className="group flex items-center gap-2 text-gray-600 hover:text-purple-600 transition-all duration-300 text-sm font-medium py-2.5 px-4 rounded-lg hover:bg-white hover:shadow-sm"
+                      >
+                        <FaExternalLinkAlt className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <span>{program.label}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             
-            {/* Quick Links */}
+            {/* Quick Links - Show different links based on page group */}
             <div className="lg:col-span-1 text-center md:text-left">
               <div className="flex items-center gap-2 mb-6 justify-center md:justify-start">
                 <FaSitemap className="w-6 h-6 text-purple-600" />
                 <h5 className="text-gray-800 text-lg font-semibold">Quick Links</h5>
               </div>
               <ul className="space-y-3">
-                {[
-                  { label: "Home", url: "/", icon: <FaExternalLinkAlt className="w-3 h-3" /> },
-                  { label: "About Us", url: "/about", icon: <FaBuilding className="w-3 h-3" /> },
-                  { label: "Services", url: "/services", icon: <FaTools className="w-3 h-3" /> },
-                  { label: "Contact Us", url: "/contact", icon: <FaEnvelope className="w-3 h-3" /> },
-                  { label: "Login", url: "/login", icon: <FaGraduationCap className="w-3 h-3" /> }
-                ].map((link, index) => (
+                {(isHomePage2Group ? homepage2QuickLinks : originalQuickLinks).map((link, index) => (
                   <li key={index}>
                     <Link 
                       to={link.url} 
@@ -188,7 +282,9 @@ const Footer = () => {
                       <FaMapMarkerAlt className="w-5 h-5 text-purple-600" />
                     </div>
                     <div className="text-left">
-                      <p className="text-sm text-gray-800 font-medium">Education Hub</p>
+                      <p className="text-sm text-gray-800 font-medium">
+                        {isHomePage2Group ? "IT Solutions Hub" : "Education Hub"}
+                      </p>
                       <p className="text-sm text-gray-600">MMR Complex, Salem</p>
                       <p className="text-sm text-gray-600">Tamil Nadu, India - 636008</p>
                     </div>
@@ -221,7 +317,9 @@ const Footer = () => {
                     <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-200 transition-colors duration-300">
                       <MdEmail className="w-5 h-5 text-purple-600" />
                     </div>
-                    <span className="font-medium">info@stacklyedu.com</span>
+                    <span className="font-medium">
+                      {isHomePage2Group ? "info@stacklyit.com" : "info@stacklyedu.com"}
+                    </span>
                   </Link>
                 </div>
               </div>
@@ -230,14 +328,9 @@ const Footer = () => {
 
           {/* Divider */}
           <div className="border-t border-gray-300 pt-12">
-            {/* Stats Section */}
+            {/* Stats Section - Different stats based on page group */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
-              {[
-                { number: "50K+", label: "Active Students", icon: <FaGraduationCap className="w-6 h-6" /> },
-                { number: "95%", label: "Success Rate", icon: <FaChalkboardTeacher className="w-6 h-6" /> },
-                { number: "500+", label: "Courses", icon: <FaTools className="w-6 h-6" /> },
-                { number: "150+", label: "Countries", icon: <FaMapMarkerAlt className="w-6 h-6" /> }
-              ].map((stat, index) => (
+              {(isHomePage2Group ? homepage2Stats : originalStats).map((stat, index) => (
                 <div 
                   key={index}
                   className="text-center p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100"
@@ -258,10 +351,15 @@ const Footer = () => {
               {/* Copyright */}
               <div className="text-center md:text-left">
                 <p className="text-gray-600">
-                  &copy; {currentYear} <span className="font-semibold text-gray-800">Stackly Education</span>. All rights reserved.
+                  &copy; {currentYear} <span className="font-semibold text-gray-800">
+                    {isHomePage2Group ? "Stackly IT Solutions" : "Stackly Education"}
+                  </span>. All rights reserved.
                 </p>
                 <p className="text-xs text-gray-500 mt-2">
-                  Transforming lives through quality online learning
+                  {isHomePage2Group 
+                    ? "Transforming businesses with innovative technology solutions"
+                    : "Transforming lives through quality online learning"
+                  }
                 </p>
               </div>
 
@@ -270,7 +368,10 @@ const Footer = () => {
                 {[
                   { label: "Privacy Policy", url: "/404", icon: <FaShieldAlt className="w-4 h-4" /> },
                   { label: "Terms of Service", url: "/404", icon: <FaFileContract className="w-4 h-4" /> },
-                  { label: "Academic Policy", url: "/404", icon: <FaGraduationCap className="w-4 h-4" /> },
+                  { label: isHomePage2Group ? "Service Level Agreement" : "Academic Policy", 
+                    url: "/404", 
+                    icon: isHomePage2Group ? <FaFileContract className="w-4 h-4" /> : <FaGraduationCap className="w-4 h-4" /> 
+                  },
                   { label: "Sitemap", url: "/404", icon: <FaSitemap className="w-4 h-4" /> },
                   { label: "Careers", url: "/404", icon: <FaBriefcase className="w-4 h-4" /> }
                 ].map((link, index) => (
