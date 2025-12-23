@@ -27,8 +27,11 @@ import {
   Layers,
   Database,
   Cpu,
-  Shield
+  Shield,
+  Eye,
+  ExternalLink
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Course = () => {
   const [activeModule, setActiveModule] = useState(0);
@@ -264,16 +267,6 @@ const Course = () => {
     }
   };
 
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  };
-
   return (
     <div className="min-h-screen mt-16 bg-gradient-to-br from-slate-50 via-purple-50/20 to-blue-50/20">
       {/* Animated Background Particles */}
@@ -329,7 +322,18 @@ const Course = () => {
                   <span className="ml-2 font-semibold">{courseData.rating}</span>
                   <span className="text-slate-500 ml-2">({courseData.totalStudents.toLocaleString()} students)</span>
                 </div>
-              
+                
+                {/* Preview Course Button - Links to 404 */}
+                <Link to="/404">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
+                  >
+                    <Eye className="w-4 h-4" />
+                    Preview Course
+                  </motion.button>
+                </Link>
               </motion.div>
             </div>
 
@@ -391,6 +395,20 @@ const Course = () => {
                 <p className="text-slate-600 text-sm mt-2">
                   {completedLessons.length} of 50 lessons completed
                 </p>
+                
+                {/* Continue Learning Button - Links to 404 */}
+                <div className="mt-6">
+                  <Link to="/404">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-full bg-gradient-to-r from-violet-600 to-purple-600 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      <PlayCircle className="w-5 h-5" />
+                      Continue Learning
+                    </motion.button>
+                  </Link>
+                </div>
               </motion.div>
 
               {/* Enhanced Course Modules */}
@@ -518,13 +536,15 @@ const Course = () => {
                                   >
                                     <CheckCircle className="w-5 h-5" />
                                   </motion.button>
-                                  <motion.button
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    className="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200"
-                                  >
-                                    <PlayCircle className="w-5 h-5" />
-                                  </motion.button>
+                                  <Link to="/404">
+                                    <motion.button
+                                      whileHover={{ scale: 1.1 }}
+                                      whileTap={{ scale: 0.9 }}
+                                      className="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200"
+                                    >
+                                      <PlayCircle className="w-5 h-5" />
+                                    </motion.button>
+                                  </Link>
                                 </div>
                               </motion.div>
                             ))}
@@ -550,7 +570,16 @@ const Course = () => {
                     <Sparkles className="w-5 h-5 text-amber-400" />
                     Resources
                   </h3>
-                  <Download className="w-5 h-5 text-slate-400" />
+                  <Link to="/404">
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="flex items-center gap-2 text-sm bg-white/20 hover:bg-white/30 px-3 py-2 rounded-lg transition-all duration-300"
+                    >
+                      <Download className="w-4 h-4" />
+                      Download All
+                    </motion.button>
+                  </Link>
                 </div>
                 <div className="space-y-3">
                   {resources.map((resource) => (
@@ -568,13 +597,15 @@ const Course = () => {
                           <p className="text-slate-400 text-sm">{resource.type.toUpperCase()} • {resource.size}</p>
                         </div>
                       </div>
-                      <motion.button
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="p-2 hover:bg-white/20 rounded-lg"
-                      >
-                        <Download className="w-4 h-4" />
-                      </motion.button>
+                      <Link to="/404">
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="p-2 hover:bg-white/20 rounded-lg"
+                        >
+                          <Download className="w-4 h-4" />
+                        </motion.button>
+                      </Link>
                     </motion.div>
                   ))}
                 </div>
@@ -594,19 +625,20 @@ const Course = () => {
                     { icon: <Users className="w-5 h-5 text-emerald-600" />, title: "Study Groups", desc: "Join groups based on your timezone" },
                     { icon: <BarChart className="w-5 h-5 text-purple-600" />, title: "Progress Leaderboard", desc: "Compare your progress with others" }
                   ].map((item, index) => (
-                    <motion.div
-                      key={index}
-                      whileHover={{ scale: 1.02, x: 5 }}
-                      className="flex items-center p-4 bg-gradient-to-r from-slate-50 to-white rounded-xl border border-slate-100"
-                    >
-                      <div className="p-3 bg-slate-100 rounded-lg mr-4">
-                        {item.icon}
-                      </div>
-                      <div>
-                        <p className="font-medium text-slate-900">{item.title}</p>
-                        <p className="text-slate-600 text-sm">{item.desc}</p>
-                      </div>
-                    </motion.div>
+                    <Link to="/404" key={index}>
+                      <motion.div
+                        whileHover={{ scale: 1.02, x: 5 }}
+                        className="flex items-center p-4 bg-gradient-to-r from-slate-50 to-white rounded-xl border border-slate-100"
+                      >
+                        <div className="p-3 bg-slate-100 rounded-lg mr-4">
+                          {item.icon}
+                        </div>
+                        <div>
+                          <p className="font-medium text-slate-900">{item.title}</p>
+                          <p className="text-slate-600 text-sm">{item.desc}</p>
+                        </div>
+                      </motion.div>
+                    </Link>
                   ))}
                 </div>
               </motion.div>
@@ -632,6 +664,18 @@ const Course = () => {
                       65%
                     </div>
                   </div>
+                  
+                  {/* View Certificate Button - Links to 404 */}
+                  <Link to="/404" className="block mt-6">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-full bg-white text-violet-700 py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      View Certificate Sample
+                    </motion.button>
+                  </Link>
                 </div>
               </motion.div>
 
@@ -662,13 +706,16 @@ const Course = () => {
                     <p className="text-slate-600 text-sm">Students Taught</p>
                   </div>
                 </div>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full bg-gradient-to-r from-slate-900 to-slate-800 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300"
-                >
-                  View Profile
-                </motion.button>
+                <Link to="/404">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full bg-gradient-to-r from-slate-900 to-slate-800 text-white py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    View Instructor Profile
+                  </motion.button>
+                </Link>
               </motion.div>
             </div>
           </div>
@@ -680,7 +727,7 @@ const Course = () => {
             viewport={{ once: true }}
             className="mt-8 bg-gradient-to-br from-white to-slate-50 rounded-2xl shadow-xl p-8 border border-slate-100"
           >
-            <h3 className="text-3xl font-bold text-slate-900 mb-8 text-center">
+               <h3 className="text-3xl font-bold text-slate-900 mb-8 text-center">
               What You'll <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">Learn</span>
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -716,6 +763,4 @@ const Course = () => {
       </div>
     </div>
   );
-};
-
-export default Course;
+}; export default Course;

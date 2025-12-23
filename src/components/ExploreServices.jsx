@@ -556,7 +556,7 @@ const ExploreServices = () => {
                     {service.description}
                   </p>
                   <Link
-                    to={service.link}
+                    to="/404"
                     className="group/link inline-flex items-center gap-1 min-[320px]:gap-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 px-3 min-[320px]:px-4 sm:px-5 lg:px-6 xl:px-8 py-2 min-[320px]:py-2.5 sm:py-3 lg:py-3.5 xl:py-4 rounded-xl sm:rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 text-sm min-[320px]:text-base sm:text-lg w-fit overflow-hidden"
                   >
                     {/* Button Shine Effect */}
